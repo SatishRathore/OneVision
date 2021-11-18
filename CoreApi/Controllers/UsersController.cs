@@ -1,10 +1,12 @@
 using CoreApi.Data;
 using CoreApi.Entities;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace CoreApi.Controllers
 {
+    //[EnableCors()]
     [ApiController]
     [Route("api/[controller]")]
     public class UsersController : ControllerBase
