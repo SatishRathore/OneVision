@@ -1,7 +1,8 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { AgGridModule } from 'ag-grid-angular';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -13,6 +14,9 @@ import { UserDetailsComponent } from './pages/users/user-details/user-details.co
 import { MessagesComponent } from './pages/messages/messages.component';
 import { SharedModule } from './shared/shared.module';
 import { ErrorInterceptor } from './shared/interceptor/error.interceptor';
+import { JwtInterceptor } from './shared/interceptor/jwt-interceptor.interceptor';
+import { AlertModule } from 'ngx-bootstrap/alert';
+
 
 @NgModule({
   declarations: [
@@ -26,14 +30,21 @@ import { ErrorInterceptor } from './shared/interceptor/error.interceptor';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    BrowserAnimationsModule,
     FormsModule,
-    SharedModule
+    BrowserAnimationsModule,
+    AgGridModule,
+    AppRoutingModule,
+    HttpClientModule,    
+    SharedModule,
+    AlertModule.forRoot()
+  ],
+  schemas: [
+    CUSTOM_ELEMENTS_SCHEMA,
+    NO_ERRORS_SCHEMA
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
 })

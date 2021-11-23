@@ -2,7 +2,7 @@
     <div class="container">
         <div class="container-fluid">
             <a class="navbar-brand" routerLink="/" routerLinkActive="active">OV Portal</a>
-            <ul class="navbar-nav me-auto mb-2 mb-md-0" >
+            <ul class="navbar-nav me-auto mb-2 mb-md-0">
                 <ng-container *ngIf="accountService.currentUser$ | async">
                     <li class="nav-item">
                         <a class="nav-link" routerLinkActive="active" routerLink="/users">Users</a>
@@ -12,28 +12,33 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" routerLinkActive="active" routerLink="/messages">Message</a>
-                    </li>                    
+                    </li>
                 </ng-container>
                 <li class="nav-item">
                     <a class="nav-link" routerLinkActive="active" routerLink="/error">Errors</a>
                 </li>
             </ul>
             <div class="dropdown" *ngIf="(accountService.currentUser$ | async) as user" dropdown>
-                <a class="dropdown-toggle text-light ms-2 text-decoration-none" dropdownToggle>Welcome {{user.userName | titlecase}}</a>
+                <a class="dropdown-toggle text-light ms-2 text-decoration-none" dropdownToggle>Welcome {{user.userName |
+                    titlecase}}</a>
                 <div class="dropdown-menu mt-3" *dropdownMenu>
                     <a routerLink='/member/edit' class="dropdown-item">Edit Profile</a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" (click)="logout()">Logout</a>
                 </div>
             </div>
+            <!--<alert type="danger" [dismissible]="dismissible" *ngIf="vError" >
+                try submitting again.
+            </alert>-->
             <form *ngIf="(accountService.currentUser$ | async) === null" #loginForm="ngForm" class="d-flex"
                 (ngSubmit)="login()" autocomplete="off">
                 <input name="username" [(ngModel)]="lmodel.username" class="form-control me-2" type="text"
                     placeholder="username">
                 <input name="password" [(ngModel)]="lmodel.password" class="form-control me-2" type="password"
                     placeholder="password">
-                <button class="btn btn-success" type="submit">Login</button>
-            </form>
+                <button class="btn btn-warning" [disabled]="!(lmodel.username && lmodel.password)"
+                    type="submit">Login</button>
+            </form>            
         </div>
     </div>
 </nav>

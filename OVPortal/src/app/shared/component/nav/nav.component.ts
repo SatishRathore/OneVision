@@ -12,7 +12,8 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class NavComponent implements OnInit {
   lmodel: any = {}
-
+  //vError: any;
+  
   constructor(public accountService: AccountService,
     private route: Router,
     private toastsService: ToastrService) { }
@@ -20,13 +21,15 @@ export class NavComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  
   login() {
+    //this.vError = "";
     this.accountService.login(this.lmodel).subscribe(res => {
       this.route.navigateByUrl('/users')
       console.log((res));
     }, error => {
       console.log(error);
-      //this.toastsService.error(error.error);      
+      //this.vError = error.error;       
     });
   }
 

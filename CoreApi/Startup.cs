@@ -73,7 +73,7 @@ namespace API
         {
 
             app.UseMiddleware<ExceptionMiddleware>();
-            
+
             app.UseCors("CorsPolicy");
 
 
@@ -91,9 +91,14 @@ namespace API
 
             app.UseAuthorization();
 
+            app.UseDefaultFiles();
+
+            app.UseStaticFiles();
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapFallbackToController("Index","FallBack");
             });
         }
     }
