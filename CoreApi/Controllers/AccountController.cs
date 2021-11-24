@@ -59,10 +59,11 @@ namespace CoreApi.Controllers
                 if (computedHash[i] != user.PasswordHash[i]) return Unauthorized("Invalid password");
             }
 
-            return new UserDTO{
+            return new UserDTO
+            {
                 UserName = user.UserName,
                 Token = _tokenService.CreateToken(user)
-            };;
+            };
         }
         private async Task<bool> UserExists(string userName)
         {
