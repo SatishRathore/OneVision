@@ -62,7 +62,8 @@ namespace CoreApi.Controllers
             return new UserDTO
             {
                 UserName = user.UserName,
-                Token = _tokenService.CreateToken(user)
+                Token = "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiIxMjM0IiwibmJmIjoxNjM3NzUxMjcxLCJleHAiOjE2MzgzNTYwNzEsImlhdCI6MTYzNzc1MTI3MX0.eWTKveIjg7NUjWd_flsv7yPuP0zXag-A4xIwz_iUWP4i7g7HYBqwIUl2Gwc295_Yrhy-cR0p2zFb2eqd7bgAaQ"
+                //Token = _tokenService.CreateToken(user)
             };
         }
         private async Task<bool> UserExists(string userName)
