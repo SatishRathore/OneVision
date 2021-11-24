@@ -110,11 +110,11 @@ namespace API
             app.UseCors("CorsPolicy");
 
 
-            if (env.IsDevelopment())
-            {
-                app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "OneVision v1"));
-            }
+            //if (env.IsDevelopment())
+            //{
+            app.UseSwagger();
+            app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "OneVision v1"));
+            //}
 
             app.UseHttpsRedirection();
 
