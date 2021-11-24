@@ -9,7 +9,7 @@ import { AccountService } from 'src/app/shared/services/account.service';
 })
 export class RegisterComponent implements OnInit {
   @Output() cancelregistor = new EventEmitter()
-  model: any;
+  model: any = {};
 
   constructor(private accountService: AccountService,
     private toastsService: ToastrService) { }
@@ -23,7 +23,7 @@ export class RegisterComponent implements OnInit {
 
   register() {
     this.accountService.register(this.model).subscribe(resp => {
-      console.log(resp);         
+      console.log(resp);
       this.cancel();
     });
   }

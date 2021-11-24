@@ -6,8 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace CoreApi.Controllers
-{
-    [Authorize]
+{    
     public class UsersController : BaseApiController
     {
         private readonly DataContext _context;
@@ -22,7 +21,7 @@ namespace CoreApi.Controllers
             return await _context.Users.ToListAsync();
         }
 
-        
+        [Authorize]
         [HttpGet("{id}")]
         public async Task<ActionResult<AppUser>> GetUsers(int id)
         {
