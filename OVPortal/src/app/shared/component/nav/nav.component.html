@@ -1,18 +1,15 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container">
+    <a class="navbar-brand" routerLink="/" routerLinkActive="active">OV Portal</a>
+    <button class="navbar-toggler"(click)="toggleNavbar()" type="button" >
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" [ngClass]="{ 'show': navbarOpen }">
         <div class="container-fluid">
-            <a class="navbar-brand" routerLink="/" routerLinkActive="active">OV Portal</a>
             <ul class="navbar-nav me-auto mb-2 mb-md-0">
                 <ng-container *ngIf="accountService.currentUser$ | async">
                     <li class="nav-item">
                         <a class="nav-link" routerLinkActive="active" routerLink="/users">Users</a>
                     </li>
-                    <!--<li class="nav-item">
-                        <a class="nav-link" routerLinkActive="active" routerLink="/messages">Masters</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" routerLinkActive="active" routerLink="/messages">Message</a>
-                    </li>-->
                 </ng-container>
                 <li class="nav-item">
                     <a class="nav-link" routerLinkActive="active" routerLink="/error">Errors</a>
@@ -27,9 +24,6 @@
                     <a class="dropdown-item" (click)="logout()">Logout</a>
                 </div>
             </div>
-            <!--<alert type="danger" [dismissible]="dismissible" *ngIf="vError" >
-                try submitting again.
-            </alert>-->
             <form *ngIf="(accountService.currentUser$ | async) === null" #loginForm="ngForm" class="d-flex"
                 (ngSubmit)="login()" autocomplete="off">
                 <input name="username" [(ngModel)]="lmodel.username" class="form-control me-2" type="text"
@@ -38,7 +32,7 @@
                     placeholder="password">
                 <button class="btn btn-warning" [disabled]="!(lmodel.username && lmodel.password)"
                     type="submit">Login</button>
-            </form>            
+            </form>
         </div>
     </div>
 </nav>
