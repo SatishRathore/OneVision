@@ -16,7 +16,8 @@ import { SharedModule } from './shared/shared.module';
 import { ErrorInterceptor } from './shared/interceptor/error.interceptor';
 import { JwtInterceptor } from './shared/interceptor/jwt-interceptor.interceptor';
 import { AlertModule } from 'ngx-bootstrap/alert';
-
+import { NgxSpinnerModule } from "ngx-spinner";
+import { LoadingInterceptor } from './shared/interceptor/loading.interceptor';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { AlertModule } from 'ngx-bootstrap/alert';
     AppRoutingModule,
     HttpClientModule,    
     SharedModule,
-    AlertModule.forRoot()
+    AlertModule.forRoot(),
+    NgxSpinnerModule
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA,
@@ -44,7 +46,8 @@ import { AlertModule } from 'ngx-bootstrap/alert';
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
 })

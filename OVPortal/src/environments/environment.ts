@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  apiUrllocal : "https://localhost:5001/api/",
-  apiUrl : "https://satishr.herokuapp.com/api/"
+  //apiUrllocal : "https://localhost:5001/api/",
+  apiUrl: "https://satishr.herokuapp.com/api/"
 };
 
 /*
